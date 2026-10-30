@@ -2,14 +2,14 @@ package ar.edu.unlu.chatmvc.modelo;
 
 import java.time.LocalDateTime;
 
-public class Mensaje {
+public class Mensaje implements IMensaje {
     private LocalDateTime fecha;
-    private Usuario usuario;
+    private IUsuario iUsuario;
     private String texto;
 
-    public Mensaje(String texto, Usuario usuario) {
+    public Mensaje(String texto, IUsuario iUsuario) {
         this.fecha = LocalDateTime.now();
-        this.usuario = usuario;
+        this.iUsuario = iUsuario;
         this.texto = texto;
     }
 
@@ -17,14 +17,17 @@ public class Mensaje {
         this(texto, null);
     }
 
+    @Override
     public LocalDateTime getFecha() {
         return this.fecha;
     }
 
-    public Usuario getUsuario() {
-        return this.usuario;
+    @Override
+    public IUsuario getUsuario() {
+        return this.iUsuario;
     }
 
+    @Override
     public String getTexto() {
         return this.texto;
     }
@@ -33,7 +36,8 @@ public class Mensaje {
         this.texto = texto;
     }
 
+    @Override
     public boolean isMensajeDelSistema() {
-        return this.usuario == null;
+        return this.iUsuario == null;
     }
 }
