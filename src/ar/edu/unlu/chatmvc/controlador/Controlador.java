@@ -49,4 +49,19 @@ public class Controlador implements IObservador {
     public void enviarMensaje(String s) {
         this.chat.enviarMensaje(s, usuario);
     }
+
+    public IUsuario getUsuario() {
+        return usuario;
+    }
+
+    public void solicitarListaUsuarios() {
+        if (this.vista != null) {
+            this.vista.mostrarListaUsuarios(this.chat.getUsuarios());
+        }
+    }
+
+    public void solicitarListaMensajes() {
+        // programación defensiva
+        this.vista.mostrarChat(this.chat.getMensajes());
+    }
 }
